@@ -50,6 +50,7 @@ const unique = (array) => {
 // console.log(unique([0, 0, 0.77, 0, 0]));
 
 //5
+//1st solution
 function wordRank(string) {
   let maxScore = 0;
   let cleanedString = string.replace(/[^\w\s]/gi, "");
@@ -68,7 +69,29 @@ function wordRank(string) {
     return acc;
   }, 0);
 }
-// console.log(wordRank("Today is Wednesday."));
+
+//2nd solution
+function wordRank1(string) {
+  let cleanedString = string.replace(/[^\w\s]/gi, "");
+  let array = cleanedString.split(" ");
+  let highestScore = 0;
+  let highestWord = "";
+
+  array.forEach((word) => {
+    let wordScore = word.split("").reduce((acc, curr) => {
+      let score = curr.toLowerCase().charCodeAt(0) - 96;
+      return acc + score;
+    }, 0);
+
+    if (highestScore < wordScore) {
+      highestScore = wordScore;
+      highestWord = word;
+    }
+  });
+
+  return highestWord;
+}
+console.log(wordRank("Check back tomorrow, man!"));
 
 //6
 function hackerSpeak(string) {
