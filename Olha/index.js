@@ -48,20 +48,21 @@ console.log(amplified); // [ 1, 2, 3, 40 ]
 const arrayWithUniqueNum = [0, 1, 1, 1, 1, 1, 1, 1];
 
 const unique = arr => {
+	const arrCopy = [...arr];
 	// I'm comparing each number against every other. hence, a nested loop
-	for (let i = 0; i < arr.length; i++) {
+	for (let i = 0; i < arrCopy.length; i++) {
 		// I'm skipping elements that I marked as non-unique
-		if (arr[i] === 'not unique') {
+		if (arrCopy[i] === 'not unique') {
 			continue;
 		}
-		for (let j = 0; j < arr.length; j++) {
+		for (let j = 0; j < arrCopy.length; j++) {
 			// I'm not comparing a number to itself. I'm skipping mismatches for now
-			if (i === j || arr[i] !== arr[j]) {
+			if (i === j || arrCopy[i] !== arrCopy[j]) {
 				continue;
 			} else {
 				// I mark all non-unique numbers
-				arr[i] = 'not unique';
-				arr[j] = 'not unique';
+				arrCopy[i] = 'not unique';
+				arrCopy[j] = 'not unique';
 			}
 		}
 
@@ -72,6 +73,7 @@ const unique = arr => {
 }
 
 console.log(unique(arrayWithUniqueNum));
+console.log("did the array mutate?", arrayWithUniqueNum);
 
 
 //* 5. Word Ranking. Create a function that takes a string of words and returns the highest scoring word. Each letter of a word scores points according to it's position in the alphabet: a = 1, b = 2, c = 3, etc.
@@ -212,7 +214,6 @@ const pigLatin = str => {
 	
 	return words;
 }
-
 
 console.log(pigLatin("Tom got a small piece of pie.")); // Omtay otgay away mallsay iecepay foway iepay.
 
