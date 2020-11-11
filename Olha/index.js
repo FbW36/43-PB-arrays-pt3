@@ -47,7 +47,9 @@ console.log(amplified); // [ 1, 2, 3, 40 ]
 
 const arrayWithUniqueNum = [0, 1, 1, 1, 1, 1, 1, 1];
 
+// A
 const unique = arr => {
+	// I don't want to mutate the original array:
 	const arrCopy = [...arr];
 	// I'm comparing each number against every other. hence, a nested loop
 	for (let i = 0; i < arrCopy.length; i++) {
@@ -65,7 +67,6 @@ const unique = arr => {
 				arrCopy[j] = 'not unique';
 			}
 		}
-
 	}
 	// the only un-marked number is unique:
 	let uniqueNumber = arr.filter(el => el !== 'not unique')[0];
@@ -75,6 +76,26 @@ const unique = arr => {
 console.log(unique(arrayWithUniqueNum));
 console.log("did the array mutate?", arrayWithUniqueNum);
 
+// B
+const unique2 = arr => {
+	// unique is the element which occurs only once
+	const occurrences = arr.reduce((acc, curr) => {
+		if (!acc[curr]) {
+			acc[curr] = 1;
+		} else {
+			acc[curr]++;
+		}
+		return acc; // { '0': 1, '1': 7 }
+	}, {})
+
+	for (let key in occurrences) {
+		if (occurrences[key] === 1) {
+			return key;
+		}
+	}
+}
+
+console.log(unique2(arrayWithUniqueNum));
 
 //* 5. Word Ranking. Create a function that takes a string of words and returns the highest scoring word. Each letter of a word scores points according to it's position in the alphabet: a = 1, b = 2, c = 3, etc.
 // The returned string should only contain alphabetic characters (a-z).
