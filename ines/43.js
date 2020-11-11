@@ -71,8 +71,39 @@ function amplify (num){
 console.log("3==>",amplify(8));
 
 //4
+function unique (array){
+    const reduced = array.reduce(function (acc, curr){
+        if(!(acc.includes(curr))){
+            acc.push(curr)
+        }
+        return acc;
+    },[])
+    return reduced[1];
+}
+console.log("4==>",unique([3, 3, 3, 7, 3, 3]));
 
+//5
+const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z"];
+const alphabetBig = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","W","V","X","Y","Z"]; 
 
+function wordRank(string){
+    stringArray = string.split("");
+    let result = 0; 
+        for(letter of stringArray){
+            alphabet.find(function (element, index){
+                if(element === letter){
+                    result += index +1;
+                }  
+            }); 
+            alphabetBig.find(function (element, index){
+                if(element === letter){
+                    result += index +1;
+                }  
+            }); 
+        }
+    return result;
+}
+console.log("5==>",wordRank("Abcd"));
 
 //6
 const letters = ["a", "e", "i", "o", "s"];
@@ -100,5 +131,47 @@ function hackerSpeak (string) {
     })
     return mapped.join("");
 }
-console.log("6==>",hackerSpeak("become a coder"));
+ console.log("6==>",hackerSpeak("become a coder"))
 
+//BONUS 1
+ function isSymmetrical(num){
+    let numString = num.toString();
+    let numStringReverse = numString.split("").reverse().join("");
+    return numString === numStringReverse
+ }
+ console.log("Bonus 1==>",isSymmetrical(1991));
+
+//BONUS 2
+function toCamelCase(string){
+    stringArray = string.split("");
+    stringArray.map(function (element, index){
+        if(element==="_"){
+            let camelIndex = index +1;
+            stringArray[camelIndex] = stringArray[camelIndex].toUpperCase();
+        }
+    } )
+    // return stringArray;
+    const filtered_ = stringArray.filter(chr => chr!=="_").join("");
+    return filtered_
+}
+console.log("Bonus 2==>", toCamelCase("javascript_is_fun"));
+
+//BONUS 3
+function pigLatin (string){
+    const stringArray = string.split(" ");
+    const result = [];
+    for(word of stringArray){
+        let beginningLetter = word[0];
+        word += beginningLetter.toLowerCase();
+        word = word.slice(1)+"way";
+        if(beginningLetter === (beginningLetter.toUpperCase())){
+            let newBeginningLetter = word[0][0];
+            let newBeginningLetterUpper = newBeginningLetter.toUpperCase();
+            word = newBeginningLetterUpper + word.slice(1)
+        }
+        result.push(word)
+    }
+    return result.join(" ");
+}
+
+console.log("Bonus 3==>",pigLatin("Tom got a small piece of pie")); 
