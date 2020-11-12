@@ -80,10 +80,9 @@ console.log("4==>",unique([3, 3, 3, 7, 3, 3]));
 
 
 //5
-const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z"];
-const alphabetBig = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","W","V","X","Y","Z"]; 
-
-function wordRank(string){
+function wordValue(string){
+    const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z"];
+    const alphabetBig = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","W","V","X","Y","Z"];  
     stringArray = string.split("");
     let result = 0; 
         for(letter of stringArray){
@@ -100,7 +99,37 @@ function wordRank(string){
         }
     return result;
 }
-console.log("5==>",wordRank("Abcd"));
+console.log("wordValue==>",wordValue("fox"));
+
+function wordRank(sentence){
+    let sentenceArray = sentence.split(" ")
+    let arrayOfWordValues = [];
+    for(word of sentenceArray){
+        arrayOfWordValues.push(wordValue(word));
+    }
+    arrayOfWordValues.reduce( (acc,curr) => {
+        if(curr>acc){
+            acc = curr;
+        }else{
+            acc+=0;
+        }
+        return acc;
+    },0)
+    let indexOfAcc = arrayOfWordValues.indexOf(71)
+    return sentenceArray[indexOfAcc];
+}
+console.log(wordRank("The quick brown fox."));
+
+/* function reduceBiggest (arrayOfNums){
+    return reduced = arrayOfNums.reduce( (acc,curr) => {
+        if(curr>acc){
+            acc = curr;
+        }
+        return acc;
+    },0)
+}
+console.log("reduceBiggest==>", reduceBiggest([ 33, 61, 71, 45 ])); */
+
 
 //6
 const letters = ["a", "e", "i", "o", "s"];
