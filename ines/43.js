@@ -71,16 +71,13 @@ function amplify (num){
 console.log("3==>",amplify(8));
 
 //4
-function unique (array){
-    const reduced = array.reduce(function (acc, curr){
-        if(!(acc.includes(curr))){
-            acc.push(curr)
-        }
-        return acc;
-    },[])
-    return reduced[1];
+function unique (arr){
+return filtered = arr.filter(function(v) {
+    return arr.indexOf(v) == arr.lastIndexOf(v);
+  });
 }
 console.log("4==>",unique([3, 3, 3, 7, 3, 3]));
+
 
 //5
 const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","w","v","x","y","z"];
