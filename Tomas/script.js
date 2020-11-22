@@ -80,7 +80,20 @@ log("unique nr -->", unique([0, 1, 1, 1, 1, 1, 1, 1]));
 // - The returned string should only contain alphabetic characters (a-z).
 // - Preserve case in the returned string (see 4th example above).
 
-// not there yet
+let sentence = "Check back tomorrow, man!"
+function wordRank(str) {
+  let abc = 'abcdefghijklmnopqrstuvxyz'
+  const strToArr = str.split(' ').map(word => word.replace(/[^a-zA-Z]/g, ''))
+ const scoresOfWords = strToArr.map(word => {
+    count = 0;
+    for(letter of word) {
+      count += abc.indexOf(letter.toLowerCase()) +1
+    }
+    return count
+  })
+ return strToArr[scoresOfWords.indexOf(Math.max(...scoresOfWords))]
+ }
+log('wordRank-->', wordRank("Today is Wednesday."))
 
 // Create a function that takes a string as an argument and returns a coded (h4ck3r 5p34k) version of the string. NB: for your program to work properly, the function should replace all 'a's with 4, 'e's with 3, 'i's with 1, 'o's with 0, and 's's with 5.
 const hackerSpeak = (str) => {
