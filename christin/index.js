@@ -197,16 +197,17 @@ isSymmetrical(9939) ➞ false
 isSymmetrical(1112111) ➞ true*/
 
 let isSymmetrical = (number) => {
-  justNumber = number.toString().split("");
-  reverseNumber = number.toString().split("").reverse();
-  if (justNumber === reverseNumber) {
+  justNumber = number.toString();
+  let reverseNumber = justNumber.split("").reverse();
+  let numReverse = reverseNumber.join("");
+  if (justNumber === numReverse) {
     return true;
   } else {
     return false;
   }
 };
 
-console.log(isSymmetrical(7853));
+console.log("is symmetrical", isSymmetrical(7227));
 
 /* 2. snake_case ➞ camelCase 
 Create a function toCamelCase() that takes a single string in snake_case and converts it into camelCase.
